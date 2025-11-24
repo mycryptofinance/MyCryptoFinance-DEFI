@@ -46,7 +46,11 @@
 
         .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.4rem; color: var(--primary); text-shadow: 0 0 10px rgba(0,255,136,0.5); }
         .logo-icon { width: 35px; height: 35px; background: linear-gradient(135deg, #00ff88, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; box-shadow: var(--neon); }
-        .wallet-info { display: flex; align-items: center; gap: 8px; }
+        .wallet-info { display: flex; 
+                      align-items: center; 
+                      gap: 8px;
+                     min-width: 0; justify-content: flex-end;
+                     }
 
       /* 1. Контейнер для позиционирования */
 .network-switcher {
@@ -353,6 +357,50 @@
     .balance-label {
         font-size: 0.6rem;
     }
+}
+@media (max-width: 768px) {
+    /* 1. Сделать весь блок Wallet-Info более компактным */
+    .wallet-info {
+        /* Разрешаем элементам переноситься на новую строку, если они не помещаются. */
+        /* Наш дизайн шапки может не позволить перенос, поэтому лучше уменьшить элементы. */
+        flex-shrink: 1; 
+    }
+
+    /* 2. Уменьшаем паддинги и шрифты в блоке балансов */
+    .wallet-monitor {
+        padding: 5px 8px; /* Меньше внутренний отступ */
+        margin-right: 5px;
+    }
+    
+    /* 3. Уменьшаем шрифт и скрываем метки, если они занимают слишком много места */
+    .balance-label {
+        font-size: 0.6rem; /* Чуть меньше */
+    }
+    
+    .balance-value {
+        font-size: 0.85rem; /* Чуть меньше */
+    }
+    
+    /* 4. Уменьшаем кнопки */
+    .network-select, 
+    .btn-connect {
+        padding: 6px 10px; /* Меньше внутренний отступ у кнопок */
+        font-size: 0.8rem;
+        /* Уменьшаем радиус, если нужно */
+        border-radius: 6px; 
+        /* Убеждаемся, что кнопки не пытаются быть слишком широкими */
+        white-space: nowrap;
+    }
+    
+    /* 5. Уменьшаем отступ между элементами */
+    .wallet-monitor, 
+    .network-switcher {
+        margin-right: 5px; /* Уменьшаем отступы между блоками */
+    }
+
+    /* 6. Скрываем ненужные элементы для экономии места (опционально) */
+    /* Если места совсем нет, можно скрыть метку ETH/MCF и оставить только цифры: */
+    /*.balance-label { display: none; } */
 }
 
     </style>
@@ -1067,4 +1115,5 @@
            
     </script>
 </body>
+
 </html>
